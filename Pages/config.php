@@ -1,0 +1,53 @@
+<?php
+
+$host = "localhost";
+$dbname = "gamevault";
+$username = "root";
+$password = "";
+
+try {
+    $conn = new PDO(
+        "mysql:host=$host;dbname=$dbname;charset=utf8",
+        $username,
+        $password
+    );
+
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+
+    die("Databaseverbinding mislukt: " . $e->getMessage());
+}
+
+
+$sql = "SELECT g.game_id, g.title, g.description, g.released_at, g.personal_rating, ge.name AS genre_name, p.name AS platform_name, g.rawg_id, g.rawg_rating, g.created_at, g.updated_at FROM games g LEFT JOIN genres ge ON g.genre_id = ge.genre_id LEFT JOIN platforms p ON g.platform_id = p.platform_id ORDER BY g.game_id DESC";
+
+$gameresult = $conn->query($sql);
+
+$sql = "SELECT customer_id, customer_code, first_name, last_name, gender, date_of_birth, email, phone, street, house_number, postal_code, city, country, registration_date, customer_status, loyalty_points, newsletter_subscribed, notes, created_at, updated_at FROM customers";
+
+$customerresult = $conn->query($sql);
+
+$sql = "SELECT employee_id, employee_number, first_name, last_name, email, phone, job_title, department, hire_date, salary, birth_date, street, house_number, postal_code, city, country, contract_type, employment_status, emergency_contact_name, emergency_contact_phone, notes, created_at, updated_at FROM employees";
+
+$employeeresult = $conn->query($sql);
+
+$sql = "SELECT genre_id, name FROM genres";
+
+$genreresult = $conn->query($sql);
+
+$sql = "SELECT platform_id, name FROM platforms";
+
+$platformresult = $conn->query($sql);
+
+$sql = "SELECT  supplier_id, supplier_code, company_name, contact_person, email, phone, website, chamber_of_commerce_number, vat_number, street, house_number, postal_code, city, country, bank_account, delivery_time_days, supplier_rating, is_active, notes, created_at, updated_at FROM suppliers";
+
+$supplierresult = $conn->query($sql);
+// concat is als je twee of meer dingen in een wil hebben zoals hier wil ik voor en achternaam samen dit is effe een reminder voor kai
+
+$sql = "SELECT t.transaction_id, t.transaction_code, t.transaction_type,  CONCAT(c.first_name, ' ', c.last_name) AS customer_name, s.company_name AS supplier_name, g.title AS game_title, t.transaction_date, t.quantity, t.unit_price, t.discount_percent, t.tax_percent, t.payment_method, t.payment_status, t.order_status, t.shipping_address, t.billing_address, t.reference_note, t.notes, t.created_at, t.updated_at FROM transactions t LEFT JOIN customers c ON t.customer_id = c.customer_id LEFT JOIN suppliers s ON t.supplier_id = s.supplier_id LEFT JOIN games g ON t.game_id = g.game_id";
+
+$transactionresult = $conn->query($sql);
+
+
+?>

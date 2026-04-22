@@ -1,0 +1,69 @@
+<?php
+require_once "config.php";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title> Employees </title>
+</head>
+<body>
+<header class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+        <ul class=" navbar-nav ">
+            <li class="nav-item">
+                <a href="../index.html" class="nav-link">Home </a>
+            </li>
+            <li class="nav-item">
+                <a href="gamelist.php" class="nav-link"> Game list</a>
+            </li>
+            <li class="nav-item">
+                <a href="customers.php" class="nav-link"> Customers</a>
+            </li>
+            <li class="nav-item">
+                <a href="employee.php" class="navbar-brand"> Employees</a>
+            </li>
+            <li class="nav-item">
+                <a href="suppliers.php" class="nav-link"> Suppliers</a>
+            </li>
+        <a href="transactions.php" class="nav-link"> Transactions</a>
+    </header>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Job title</th>
+        <th>Department</th>
+        <th>Hire date</th>
+        <th>Salary</th>
+        <th>Birth date</th>
+        <th>Address</th>
+        <th>Contract type</th>
+        <th>Employment status</th>
+        <th>Emergency contact</th>
+        <th>Notes</th>
+        <th>Created at</th>
+        <th>Last updated at</th>
+    </tr>
+    <?php
+    while ($row = $employeeresult->fetch(PDO::FETCH_ASSOC)) {
+        echo "<tr>";
+        echo "<td>". $row["first_name"] . " " . $row["last_name"] . "</td>";
+        echo "<td>" . $row["email"] . "<br>" . $row["phone"] . "</td>";
+        echo "<td>" . $row["job_title"] . "</td>";
+        echo "<td>" . $row["department"] . "</td>";
+        echo "<td>" . $row["hire_date"] . "</td>";
+        echo "<td>" . $row["salary"] . "</td>";
+        echo "<td>" . $row["birth_date"] . "</td>";
+        echo "<td>" . $row["street"] . " " . $row["house_number"] . "<br>" . $row["postal_code"] . "" . $row["city"] . "<br>" . $row["country"] . "</td>";
+        echo "<td>" . $row["contract_type"] . "</td>";
+        echo "<td>" . $row["employment_status"] . "</td>";
+        echo "<td>" . $row["emergency_contact_name"] . "<br>" . $row["emergency_contact_phone"] . "</td>";
+        echo "<td>" . $row["notes"] . "</td>";
+        echo "<td>" . $row["created_at"] . "</td>";
+        echo "<td>" . $row["updated_at"] . "</td>";
+        echo "</tr>";
+    }
+    ?>
+</table>
+</body>
+</html>
