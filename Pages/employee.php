@@ -54,9 +54,9 @@
                     echo "<td>" . $row["job_title"] . "</td>";
                     echo "<td>" . $row["department"] . "</td>";
                     echo "<td>" . $row["hire_date"] . "</td>";
-                    echo "<td>" . $row["salary"] . "</td>";
+                    echo "<td>" . "€" . $row["salary"] . "</td>";
                     echo "<td>" . $row["birth_date"] . "</td>";
-                    echo "<td>" . $row["street"] . " " . $row["house_number"] . "<br>" . $row["postal_code"] . "" . $row["city"] . "<br>" . $row["country"] . "</td>";
+                    echo "<td>" . $row["street"] . " " . $row["house_number"] . "<br>" . $row["postal_code"] . " " . $row["city"] . "<br>" . $row["country"] . "</td>";
                     echo "<td>" . $row["contract_type"] . "</td>";
                     echo "<td>" . $row["employment_status"] . "</td>";
                     echo "<td>" . $row["emergency_contact_name"] . "<br>" . $row["emergency_contact_phone"] . "</td>";
