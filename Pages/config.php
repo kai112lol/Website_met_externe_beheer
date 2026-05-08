@@ -21,13 +21,6 @@
 
     // Ik heb hier AS gebruikt omdat ik hier twee names heb eentje voor de genre en de ander voor het platform
     //ik heb hier join gebruik omdat ik van meerdere databases dingen moet halen en op eentje mergen
-    $sql = "SELECT g.game_id, g.title, g.description, g.released_at, g.personal_rating, ge.name AS genre_name, p.name AS platform_name, g.rawg_id, g.rawg_rating, g.created_at, g.updated_at FROM games g LEFT JOIN genres ge ON g.genre_id = ge.genre_id LEFT JOIN platforms p ON g.platform_id = p.platform_id ORDER BY g.game_id DESC";
-
-    $gameresult = $conn->query($sql);
-
-    $sql = "SELECT customer_id, customer_code, first_name, last_name, gender, date_of_birth, email, phone, street, house_number, postal_code, city, country, registration_date, customer_status, loyalty_points, newsletter_subscribed, notes, created_at, updated_at FROM customers ORDER BY customer_id DESC";
-
-    $customerresult = $conn->query($sql);
 
     $sql = "SELECT employee_id, employee_number, first_name, last_name, email, phone, job_title, department, hire_date, salary, birth_date, street, house_number, postal_code, city, country, contract_type, employment_status, emergency_contact_name, emergency_contact_phone, notes, created_at, updated_at FROM employees ORDER BY employee_id DESC";
 
