@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . "/config.php";
+    require_once __DIR__ . "/../Models/config.php";
     require_once __DIR__ . "/../Controller/gamelistController.php";
 ?>
 <html>
