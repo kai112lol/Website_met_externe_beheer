@@ -1,0 +1,61 @@
+<?php
+    if (!isset($gameresult)) {
+        die("gameresult not passed to view");
+    }
+?>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title> Games </title>
+    </head>
+    <body>
+        <header class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+            <ul class=" navbar-nav ">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a href="gamelist.php" class="navbar-brand"> Game list</a>
+                </li>
+                <li class="nav-item">
+                    <a href="customers.php" class="nav-link"> Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="employee.php" class="nav-link"> Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a href="suppliers.php" class="nav-link"> Suppliers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="transactions.php" class="nav-link"> Transactions</a>
+                </li>
+            </ul>
+        </header>
+        <table class="table table-bordered">
+            <tr>
+                <th>Title</th>
+                <th>Game type</th>
+                <th>Release date</th>
+                <th>Genre</th>
+                <th>Platform</th>
+                <th>Rating</th>
+                <th>Rawg rating</th>
+                <th>Created at</th>
+                <th>Last updated at</th>
+            </tr>
+            <?php foreach ($gameresult as $game):?>
+                <tr>
+                    <td><?= htmlspecialchars($game["title"]) ?></td>
+                    <td><?= htmlspecialchars($game["description"]) ?></td>
+                    <td><?= htmlspecialchars($game["released_at"]) ?></td>
+                    <td><?= htmlspecialchars($game["genre_name"]) ?></td>
+                    <td><?= htmlspecialchars($game["platform_name"]) ?></td>
+                    <td><?= htmlspecialchars($game["personal_rating"]) ?></td>
+                    <td><?= htmlspecialchars($game["rawg_rating"]) ?></td>
+                    <td><?= htmlspecialchars($game["created_at"]) ?></td>
+                    <td><?= htmlspecialchars($game["updated_at"]) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </body>
+</html>

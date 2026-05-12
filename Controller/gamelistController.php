@@ -1,9 +1,9 @@
 <?php
-    $sql = "SELECT g.game_id, g.title, g.description, g.released_at, g.personal_rating, ge.name AS genre_name, p.name AS platform_name, g.rawg_id, g.rawg_rating, g.created_at, g.updated_at FROM games g LEFT JOIN genres ge ON g.genre_id = ge.genre_id LEFT JOIN platforms p ON g.platform_id = p.platform_id ORDER BY g.game_id DESC";
-    $gameresult = $conn->query($sql);
+    require_once __DIR__ . "/../Models/gamelistget.php";
     class GameListController
     {
         private Game $game;
+
         public function __construct()
         {
             $this->game = new Game();
@@ -11,18 +11,19 @@
 
         public function index(): void
         {
-            $game = $this->game->all();
-            require __DIR__ . '/../pages/gamelist.php';
+            $gameresult = $this->game->all();
+
+        require __DIR__ . '/../views/gamelistView.php';
         }
 
-        public function creategame(): void
+        public function create(): void
         {
             require __DIR__ .'/../create/gamelistCreate.php';
         }
 
-        public function storegame(): void
+        public function store(): void
         {
-            $this->game->creategame($this->getFormData());
+            $this->game->create($this->getFormData());
             header("Location: gamelist.php");
             exit();
         }
